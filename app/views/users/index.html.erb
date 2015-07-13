@@ -3,10 +3,12 @@
 <ul>
 	<% @users.each do |u| %>
 	<li>
-		<%= u.name %>
-		<%= u %>
+		<%= link_to u.name, user_path(u.id) %>
+		<%= link_to "[Edit]", edit_user_path(u.id) %>
+		<%= link_to "[Delete]", user_path(u.id), method: :delete, 
+				data: { confirm: "Going to delete, really?" } %></p>
 	</li>
 	<% end %>
 </ul>
 
-<p></p>
+<p><%= link_to "Add new.", new_user_path %></p>
