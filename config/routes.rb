@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resource :questions
+  resources :questions
 
   root 'questions#index'
 

@@ -2,6 +2,11 @@
 
 <ul>
 	<% @questions.each do |question| %>
-	<li><%= question.title %></li>
+	<li>
+		<%= question.title %>
+		<%= link_to question.title, question_path(question) %>
+	</li>
 	<% end %>
 </ul>
+
+<p><%= link_to "Add new", new_question_path %></p>

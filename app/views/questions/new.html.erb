@@ -1,0 +1,15 @@
+<h1>add new</h1>
+
+<%= form_for @question do |f| %>
+<%= render "shared/errors", obj: @question %>
+
+<p>
+	<%= f.label :title %><br>
+	<%= f.text_field :title %>
+</p>
+
+<p>
+	<%= f.submit %>
+</p>
+
+<% end %>
