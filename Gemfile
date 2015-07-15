@@ -44,3 +44,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'slim-rails'
+
+gem 'therubyracer', platforms: :ruby  #javascript runtime, lessをコンパイルするために必要
+#gem 'less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
+gem 'twitter-bootstrap3-rails' # Bootstrapの本体
