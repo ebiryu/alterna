@@ -1,0 +1,10 @@
+<% if @user.errors.present? %>
+<div id="errors">
+	<h3>エラーがあります。</h3>
+	<ul>
+		<% @user.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
