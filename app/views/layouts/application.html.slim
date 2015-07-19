@@ -32,10 +32,17 @@ html
 
     .container
       - flash.each do |name, msg|
-        ."alert alert-<%= name == "notice" ? "success" : "error" %>"
-        a.close data-dismiss="alert"  ×
-      /! アラートダイアログに×ボタンをつける
-        = msg
+        - w = (name == "notice" ? "success" : "error")
+        - if w = "success"
+          .alert alert-success
+            a.close data-dismiss="alert"  ×
+              /! アラートダイアログに×ボタンをつける
+            = msg
+        - else
+          .alert alert-error
+            a.close data-dismiss="alert"  ×
+              /! アラートダイアログに×ボタンをつける
+            = msg
       .row
         .col-lg-9
           = bootstrap_flash
@@ -51,3 +58,4 @@ html
       footer
           span=link_to "Home", root_path
           span &copy; ebiryu 2015
+

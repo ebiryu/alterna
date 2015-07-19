@@ -25,9 +25,9 @@ p
 
 p
   strong Posts:
-ul
-  - @user.questions.order(:created_at).each do |q|
-    li= q.title
+  ul
+    - @user.questions.order(:created_at).each do |q|
+      li= q.title
 
 = link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn btn-default'
 '

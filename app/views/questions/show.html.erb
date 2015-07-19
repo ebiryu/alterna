@@ -2,7 +2,18 @@
 
 <p>Yes:<%= @question.n_yes %> No:<%= @question.n_no %></p>
 
+<p>
+  <% count = @question.answers.count %>
+  <span class="vote">★<%= count %></span>
+  
+  <% if User.find(1).answerable_for?(@question) %>
+    <%= link_to "yes", [:yes, @question], method: :patch, class: "btn btn-default" %>
+    <%= link_to "no", [:no, @question], method: :patch, class: "btn btn-default" %>
+  <% end %>
+</p>
+
 <p><%= @question.created_at %></p>
 
 <p><%= link_to "[Delete]", question_path(@question.id), method: :delete, 
-		data: { confirm: "Going to delete, really?" } %></p>
+	data: { confirm: "Going to delete, really?" } %></p>
+

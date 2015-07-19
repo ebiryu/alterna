@@ -27,6 +27,18 @@ class QuestionsController < ApplicationController
 		redirect_to questions_path
 	end
 
+	def yes
+		@question = Question.find(params[:id])
+		User.find(1).answered_questions << @question
+		redirect_to @question, notice: "回答しました。"
+	end
+
+	def no
+		@question = Question.find(params[:id])
+		User.find(1).answered_questions << @question
+		redirect_to @question, notice: "回答しました。"
+	end
+
 	private
 	def question_params
 		params[:question].permit(:title, :User_id)

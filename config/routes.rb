@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :questions, :users
+  resources :questions do
+    member { patch "yes", "unyes", "no", "unno" }
+    collection { get "answered" }
+  end
+
+  resources :users
 
   root 'questions#index'
 
