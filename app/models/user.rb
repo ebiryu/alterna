@@ -1,12 +1,17 @@
 class User < ActiveRecord::Base
 
 	has_many :questions, dependent: :destroy
-	has_many :answers, dependent: :destroy
+
+	has_many :answers, dependent: :destroy  # yesの多対多
 	has_many :answered_questions, through: :answers, source: :question
+
+	has_many :oppositions, dependent: :destroy  # noの多対多
+	has_many :opposed_questions, through: :oppositions, source: :question
 
 	validates :name, presence: true
 
 	def answerable_for?(question)
-	  question && question.author != self && !answers.exists?(question_id: question.id)
+	  question and question.author != self and \
+	  !answers.exists?(question_id: question.id) and !oppositions.exists?(question_id: question.id)
 	end
 end

@@ -4,8 +4,11 @@
 
 <p>
   <% count = @question.answers.count %>
-  <span class="vote">★<%= count %></span>
-  
+  <span class="vote">y★<%= count %></span>
+  <% count2 = @question.oppositions.count %>
+  <span class="vote">n★<%= count2 %></span>  
+
+
   <% if User.find(1).answerable_for?(@question) %>
     <%= link_to "yes", [:yes, @question], method: :patch, class: "btn btn-default" %>
     <%= link_to "no", [:no, @question], method: :patch, class: "btn btn-default" %>

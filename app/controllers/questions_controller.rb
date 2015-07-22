@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
 
 	def no
 		@question = Question.find(params[:id])
-		User.find(1).answered_questions << @question
+		User.find(1).opposed_questions << @question
 		redirect_to @question, notice: "回答しました。"
 	end
 

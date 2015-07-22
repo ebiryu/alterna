@@ -16,7 +16,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand href="#"  Alterna
+          a.navbar-brand href="/"  Alterna
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li.active
@@ -29,19 +29,20 @@ html
 
     br
     br
+    br
 
     .container
       - flash.each do |name, msg|
         - w = (name == "notice" ? "success" : "error")
         - if w = "success"
-          .alert alert-success
+          .alert.alert-success
             a.close data-dismiss="alert"  ×
-              /! アラートダイアログに×ボタンをつける
+            /! アラートダイアログに×ボタンをつける
             = msg
         - else
-          .alert alert-error
+          .alert.alert-error
             a.close data-dismiss="alert"  ×
-              /! アラートダイアログに×ボタンをつける
+            /! アラートダイアログに×ボタンをつける
             = msg
       .row
         .col-lg-9
