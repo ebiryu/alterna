@@ -11,6 +11,12 @@ class User < ActiveRecord::Base
 
 	validates :name, presence: true
 
+	validates :password, length: { minimum: 3 }
+	validates :password, confirmation: true
+	validates :password_confirmation, presence: true
+
+	validates :email, uniqueness: true
+
 	def answerable_for?(question)
 	  question and question.author != self and \
 	  !answers.exists?(question_id: question.id) and !oppositions.exists?(question_id: question.id)

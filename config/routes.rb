@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     collection { get "answered" }
   end
 
+  resources :user_sessions
   resources :users
+
+  get 'login' => 'user_sessions#new', :as => :login
+  post 'logout' => 'user_sessions#destroy', :as => :logout
 
   root 'questions#index'
 
