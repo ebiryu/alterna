@@ -1,0 +1,16 @@
+h3 Question
+
+ul.list-group
+  - @questions.each do |question|
+	  li.list-group-item
+	    h2 = question.title
+	    = link_to question.title, question_path(question) 
+	    .text-right
+	      <span>Yes:</span>
+		    = question.n_yes
+	      <span>No:</span>
+		    = question.n_no
+		    br
+		    br
+
+p= link_to "Add new", new_question_path

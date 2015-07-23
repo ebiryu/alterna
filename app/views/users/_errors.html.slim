@@ -1,0 +1,7 @@
+- if @user.errors.present?
+  .alert.alert-error
+    a.close data-dismiss="alert" ×
+    h4.alert-heading = pluralize(@user.errors.count, "error")
+    ul
+      - @user.errors.full_messages.each do |msg|
+          li = msg
