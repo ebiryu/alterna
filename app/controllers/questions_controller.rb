@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :new, :create]
 
 	before_action :set_question, only: [:show, :destroy]
 
