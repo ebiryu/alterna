@@ -51,4 +51,6 @@ gem 'twitter-bootstrap3-rails' # Bootstrapの本体
 
 gem 'sorcery'
 
-gem 'rspec', '3.0.0'
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+end
