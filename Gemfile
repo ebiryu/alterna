@@ -50,3 +50,5 @@ gem 'therubyracer', platforms: :ruby  #javascript runtime, lessをコンパイ�
 gem 'twitter-bootstrap3-rails' # Bootstrapの本体
 
 gem 'sorcery'
+
+gem 'rspec', '3.0.0'
