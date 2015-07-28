@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 	validates :password, confirmation: true
 	validates :password_confirmation, presence: true
 
-	validates :email, uniqueness: true
+	validates :email, uniqueness: true, presence: true
 
 	def answerable_for?(question)
 	  question and question.author != self and \
