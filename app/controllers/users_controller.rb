@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
   		# redirect_to user_path(@user)
-      redirect_to(:users, notice: 'User was successfully created')
+      redirect_to( new_user_session_path, notice: 'User was successfully created. Please login.')
   	else
   		render 'new'
   	end
