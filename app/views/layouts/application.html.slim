@@ -27,9 +27,13 @@ html
                 = link_to "Home", root_path
             li
               a href="#about"  About
-            li
-              a href="#contact"  Contact
             - if current_user
+              - if controller_name == 'users' and action_name == 'show'
+                li.active
+                  = link_to "My page", user_path(current_user.id)
+              - else
+                li
+                  = link_to "My page", user_path(current_user.id)
               li
                 = link_to "Edit Profile", edit_user_path(current_user.id)
               li.navbar-right
@@ -70,12 +74,11 @@ html
         .row
           .col-sm-4
             .well.well-sm.sidebar-nav
-              - if current_user
-                h3 =current_user.name
+              h3 =current_user.name
               ul.nav.nav-list
-                li.nav-header Sidebar
-                li= link_to "Link 1", "/path1"
-              p = link_to t('.new', :default => t("helpers.links.new")), new_question_path, :class => 'btn btn-primary btn-block'
+                li.nav-header
+              - if !(controller_name == 'questions' && action_name == 'new')
+                p = link_to t('.new', :default => t("New Question")), new_question_path, :class => 'btn btn-primary btn-block'
           .col-sm-8
             = bootstrap_flash
             = yield

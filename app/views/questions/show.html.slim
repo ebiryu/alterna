@@ -2,21 +2,28 @@ ul.list-group
   li.list-group-item
     h1 = @question.title
 
-    p
+    .progress
+      - total = @question.answers.count + @question.oppositions.count
+      - if total > 0
+        - late_y = 100 * @question.answers.count / total
+        - late_n = 100 - late_y
+        <div class="progress-bar progress-bar-success" style="width: #{late_y}%"><strong>Yes: #{@question.answers.count}</strong></div>
+        <div class="progress-bar progress-bar-warning" style="width: #{late_n}%"><strong>No: #{@question.oppositions.count}</strong></div>
+      - else
+        - late_y = 0
+        - late_n = 0
+        <div class="progress-bar progress-bar-success" style="width: #{late_y}%"></div>
+        <div class="progress-bar progress-bar-warning" style="width: #{late_n}%"></div>
+        
+    p.text-left
       - if current_user.answerable_for?(@question)
         .btn-group
           = link_to "yes", [:yes, @question], method: :patch, class: "btn btn-default"
           = link_to "no", [:no, @question], method: :patch, class: "btn btn-default"
-          
-    .progress
-      - total = @question.answers.count + @question.oppositions.count
-      - late_y = 100 * @question.answers.count / total
-      - late_n = 100 - late_y
-      <div class="progress-bar progress-bar-success" style="width: #{late_y}%"><strong>Yes:#{@question.answers.count}</strong></div>
-      <div class="progress-bar progress-bar-warning" style="width: #{late_n}%"><strong>No:#{@question.oppositions.count}</strong></div>
+      - if current_user.id == @question.User_id
+        = link_to "Delete", question_path(@question.id), method: :delete, 
+          data: { confirm: "Going to delete, really?" }, :class => 'btn btn-xs btn-danger'
 
-    p = @question.created_at
-
-    - if current_user == @question.author
-      p = link_to "[Delete]", question_path(@question.id), method: :delete, 
-      	data: { confirm: "Going to delete, really?" }, :class => 'btn btn-xs btn-danger'
+      .text-right
+        strong= link_to "#{User.find(@question.User_id).name}", user_path(@question.User_id)
+        | &nbsp; created at #{@question.created_at}

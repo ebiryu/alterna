@@ -4,17 +4,21 @@ ul.list-group
   - @questions.each do |question|
 	  li.list-group-item
 	    h2.text_black = link_to question.title, question_path(question) 
-	    .text-right
-	      <span>Yes:</span>
-		    = question.answers.count
-	      <span>No:</span>
-		    = question.oppositions.count
+  	    .text-right
+          strong = link_to "#{User.find(question.User_id).name}", user_path(question.User_id)
         
-        .progress
-          - total = question.answers.count + question.oppositions.count
+      .progress
+        - total = question.answers.count + question.oppositions.count
+        - if total > 0
           - late_y = 100 * question.answers.count / total
           - late_n = 100 - late_y
-          <div class="progress-bar progress-bar-success" style="width: #{late_y}%"><strong>Yes:#{question.answers.count}</strong></div>
-          <div class="progress-bar progress-bar-warning" style="width: #{late_n}%"><strong>No:#{question.oppositions.count}</strong></div>
-		    br
-		    br
+          <div class="progress-bar progress-bar-success" style="width: #{late_y}%"><strong>Yes: #{question.answers.count}</strong></div>
+          <div class="progress-bar progress-bar-warning" style="width: #{late_n}%"><strong>No: #{question.oppositions.count}</strong></div>
+
+        - else
+          - late_y = 0
+          - late_n = 0
+          <div class="progress-bar progress-bar-success" style="width: #{late_y}%"></div>
+          <div class="progress-bar progress-bar-warning" style="width: #{late_n}%"></div>
+	    br
+	    br

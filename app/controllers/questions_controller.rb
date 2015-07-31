@@ -4,14 +4,14 @@ class QuestionsController < ApplicationController
 	before_action :set_question, only: [:show, :destroy]
 
 	def index
-		@questions = Question.all
+		@questions = Question.all.order(created_at: :desc)
 	end
 
 	def show
 	end
 
 	def new
-		@question = Question.new
+		@question = Question.new(User_id: current_user.id)
 	end
 
 	def create
